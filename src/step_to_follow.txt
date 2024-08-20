@@ -1,0 +1,41 @@
+Step:
+1- Design the store
+2- Define the actions
+3- Create a reducer
+4- Setup the store
+
+
+1- Design Store:
+Example: 
+[{id :1,
+description: '',
+resolve: false },
+{..},
+{..},]
+
+2- Define the actions:
+
+Is a plan javascript object which define what can happen, like Events.
+Example:
+{
+    type: "ADD_BUG",   // type is the only property which redux expects, Cause ERROR
+
+    payload: {
+    Id: 1, 
+    description: "..."
+    }
+}
+
+3- Create Reduce: 
+   Reduce is a function that takes two parameters 
+   function reduce(state, action){
+    if(){
+
+    }
+    els if()
+   }
+
+
+
+4- Create or Setup Store:
+ 
