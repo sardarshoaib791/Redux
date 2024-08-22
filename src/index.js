@@ -4,8 +4,11 @@ import {
   bugRemoved,
   bugResolved,
   getUnresolvedBug,
+  bugAssignToUser,
+  getBugsByUser,
 } from "./store/bug";
 import { addProject, removeProject } from "./store/project";
+import { userAdded } from "./store/users";
 
 const store = configureStore();
 
@@ -31,6 +34,14 @@ const x = getUnresolvedBug(store.getState());
 const y = getUnresolvedBug(store.getState());
 console.log("un resolved bug access:", x);
 console.log(x === y);
+
+//users:
+store.dispatch(userAdded({ name: "users1" }));
+store.dispatch(userAdded({ name: "users2" }));
+store.dispatch(bugAssignToUser({ bugId: 1, userId: 1 }));
+const user1bugs = getBugsByUser(1)(store.getState());
+console.log("user one bug", user1bugs);
+console.log("users list", store.getState().entities.users);
 
 //===>Simple-Redux
 
