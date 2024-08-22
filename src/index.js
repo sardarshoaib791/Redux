@@ -22,11 +22,15 @@ console.log(store.getState().length);
 store.dispatch(bugAdded({ description: "bug1" }));
 store.dispatch(bugAdded({ description: "bug2" }));
 store.dispatch(bugAdded({ description: "bug-3" }));
+store.dispatch(bugAdded({ description: "bug-3" }));
 // unsub();
 store.dispatch(bugResolved({ id: 1 }));
-store.dispatch(bugRemoved({ id: 1 }));
-const unres = getUnresolvedBug(store.getState());
-console.log(unres);
+store.dispatch(bugRemoved({ id: 3 }));
+console.log(store.getState().entities.bugs);
+const x = getUnresolvedBug(store.getState());
+const y = getUnresolvedBug(store.getState());
+console.log("un resolved bug access:", x);
+console.log(x === y);
 
 //===>Simple-Redux
 

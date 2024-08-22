@@ -1,7 +1,7 @@
 // //DUCK PETTTEREN:
 // ReduxtoolKit====>
 import { createAction, createReducer, createSlice } from "@reduxjs/toolkit";
-
+import { createSelector } from "reselect";
 //combine action creator and reduce:
 let lastId = 0;
 const slice = createSlice({
@@ -27,10 +27,17 @@ const slice = createSlice({
 });
 
 //selector:
-export const getUnresolvedBug = (state) =>
-  state.entities.bugs.filter((bug) => !bug.resolve);
+// export const getUnresolvedBug = (state) =>
+//   state.entities.bugs.filter((bug) => !bug.resolve);
 //selector^
 
+//Memoization:
+export const getUnresolvedBug = createSelector(
+  (state) => state.entities.bugs,
+  (state) => state.entities.projects, // just for multiple selector we can pass
+  (bugs, project) => bugs.filter((bug) => !bug.resolve)
+);
+//
 export const { bugAdded, bugRemoved, bugResolved } = slice.actions;
 export default slice.reducer;
 //Actions:
