@@ -1,5 +1,10 @@
 import configureStore from "./store/configureStore";
-import { bugAdded, bugRemoved, bugResolved } from "./store/bug";
+import {
+  bugAdded,
+  bugRemoved,
+  bugResolved,
+  getUnresolvedBug,
+} from "./store/bug";
 import { addProject, removeProject } from "./store/project";
 
 const store = configureStore();
@@ -13,12 +18,15 @@ store.dispatch(addProject({ name: "project2" }));
 store.dispatch(addProject({ name: "project3" }));
 store.dispatch(removeProject({ id: 1 }));
 console.log(store.getState().length);
-// store.dispatch(bugAdded({ description: "bug1" }));
-// store.dispatch(bugAdded({ description: "bug2" }));
-// // unsub();
-// store.dispatch(bugResolved({ id: 1 }));
-// store.dispatch(bugRemoved({ id: 1 }));
-// console.log(store.getState());
+//======> bugs:
+store.dispatch(bugAdded({ description: "bug1" }));
+store.dispatch(bugAdded({ description: "bug2" }));
+store.dispatch(bugAdded({ description: "bug-3" }));
+// unsub();
+store.dispatch(bugResolved({ id: 1 }));
+store.dispatch(bugRemoved({ id: 1 }));
+const unres = getUnresolvedBug(store.getState());
+console.log(unres);
 
 //===>Simple-Redux
 
